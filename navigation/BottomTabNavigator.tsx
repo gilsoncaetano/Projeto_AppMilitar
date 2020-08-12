@@ -10,6 +10,8 @@ import Inicial from "../screens/Inicial";
 import Perfil from "../screens/Perfil";
 import Carrinho from "../screens/Carrinho";
 import PedidosRealizados from "../screens/PedidosRealizados";
+import Login from "../screens/Login";
+import Cadastrar from "../screens/Cadastrar";
 
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
@@ -61,6 +63,26 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-gift" color={color} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Login"
+        component={LoginNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-american-football" color={color} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Cadastrar"
+        component={CadastrarNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-appstore" color={color} />
           ),
         }}
       />
@@ -128,16 +150,28 @@ function PedidosRealizadosNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-function TabTwoNavigator() {
+const LoginStack = createStackNavigator();
+function LoginNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+    <LoginStack.Navigator>
+      <LoginStack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerTitle: "Login" }}
       />
-    </TabTwoStack.Navigator>
+    </LoginStack.Navigator>
+  );
+}
+
+const CadastrarStack = createStackNavigator();
+function CadastrarNavigator() {
+  return (
+    <CadastrarStack.Navigator>
+      <CadastrarStack.Screen
+        name="Cadastrar"
+        component={Cadastrar}
+        options={{ headerTitle: "Cadastrar" }}
+      />
+    </CadastrarStack.Navigator>
   );
 }
