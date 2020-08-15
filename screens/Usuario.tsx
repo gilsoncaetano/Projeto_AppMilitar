@@ -2,8 +2,6 @@ import * as React from "react";
 import { Text, View } from "../components/Themed";
 import { TextInput, ScrollView } from "react-native-gesture-handler";
 import {
-  SectionList,
-  Picker,
   Button,
   StyleSheet,
   Image,
@@ -11,50 +9,42 @@ import {
   unstable_enableLogBox,
   Alert,
 } from "react-native";
-import Usuario from "../screens/Usuario";
+import Endereco from "../screens/Endereco";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-export default function Cadastrar({ navigation }) {
-  const [sexo, setSexo] = React.useState("");
-  const [tipo, setTipo] = React.useState("");
-
+export default function Usuario({ navigation }) {
   return (
     <View style={estilo.area}>
       <ImageBackground
         source={require("../img/camuflada.png")}
         style={estilo.fundo}
       >
-        <Text style={estilo.dados}> Dados Pessoas</Text>
-        <TextInput placeholder="Nome Completo" style={estilo.cadastro} />
-        <TextInput placeholder="CPF" style={estilo.cadastro} />
+        <Text style={estilo.areausu}> Acesso</Text>
+        <TextInput placeholder="Usuário" style={estilo.acessousu} />
+        <TextInput
+          secureTextEntry
+          placeholder="Senha"
+          style={estilo.acessousu}
+        />
+        <TextInput
+          secureTextEntry
+          placeholder="Confirme"
+          style={estilo.acessousu}
+        />
         <TextInput
           placeholder="E-Mail"
           keyboardType="email-address"
-          style={estilo.cadastro}
+          style={estilo.acessousu}
         />
-        <TextInput
-          placeholder="Telefone"
-          keyboardType="phone-pad"
-          style={estilo.cadastro}
-        />
-        <Picker
-          selectedValue={sexo}
-          mode="dialog"
-          onValueChange={setSexo}
-          style={estilo.sexo}
-        >
-          <Picker.Item label="Masculino" value="Masculino" />
-          <Picker.Item label="Feminino" value="Feminino" />
-        </Picker>
 
         <View style={estilo.botao}>
           <Button title="" />
           <Text
             style={estilo.txtlogar}
-            onPress={() => navigation.navigate("Usuario")}
+            onPress={() => navigation.navigate("Endereco")}
           >
             Cadastrar{" "}
           </Text>
@@ -62,9 +52,10 @@ export default function Cadastrar({ navigation }) {
       </ImageBackground>
     </View>
   );
+
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Usuario" component={Usuario} />
+      <Stack.Screen name="Endereco" component={Endereco} />
     </Stack.Navigator>
   </NavigationContainer>;
 }
@@ -81,36 +72,24 @@ const estilo = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
   },
-  dados: {
-    marginTop: 60,
-    fontSize: 25,
-    margin: 14,
+  areausu: {
+    fontSize: 18,
+    padding: 14,
     marginLeft: "auto",
     marginRight: "auto",
   },
-
-  cadastro: {
+  acessousu: {
     backgroundColor: "white",
-    borderRadius: 5,
+    color: "#f50057",
     padding: 18,
     width: "85%",
-    margin: 8,
+    margin: 6,
     marginLeft: "auto",
     marginRight: "auto",
     shadowColor: "gray",
     shadowOpacity: 1,
-  },
-
-  usuario: {
-    backgroundColor: "white",
     borderRadius: 5,
-    padding: 14,
-    width: "85%",
-    margin: 14,
-    marginLeft: "auto",
-    marginRight: "auto",
-    shadowColor: "gray",
-    shadowOpacity: 1,
+    borderBottomColor: "silver",
   },
   txtlogar: {
     color: "white",
@@ -123,17 +102,10 @@ const estilo = StyleSheet.create({
   botao: {
     borderRadius: 4,
     textAlign: "center",
-    marginBottom: 50,
-    marginTop: -30,
+    marginTop: 60,
     backgroundColor: "#f9a825",
     width: "85%",
     marginLeft: "auto",
     marginRight: "auto",
-  },
-  sexo: {
-    marginTop: -40,
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: "85%",
   },
 });

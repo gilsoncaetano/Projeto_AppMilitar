@@ -1,26 +1,53 @@
 import * as React from "react";
 import { Text, View } from "../components/Themed";
-import { TextInput } from "react-native-gesture-handler";
-import { Button, StyleSheet, Image, unstable_enableLogBox } from "react-native";
+import { TextInput, ScrollView } from "react-native-gesture-handler";
+import {
+  Button,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  unstable_enableLogBox,
+  Alert,
+} from "react-native";
+import Cadastrar from "../screens/Cadastrar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-export default function Login() {
+const Stack = createStackNavigator();
+
+export default function Login({ navigation }) {
   return (
     <View style={estilo.area}>
-      <Image source={require("../img/saw-logo.png")}style={estilo.logo} />
+      <ImageBackground source={require("../img/camuflada.png")} style={estilo.fundo}>
+        <Image source={require("../img/saw-logo.png")} style={estilo.logo} />
 
-      <TextInput placeholder="Usuario" style={estilo.acesso} />
-      <TextInput secureTextEntry placeholder="Senha" style={estilo.acesso} />
+        <TextInput placeholder="Usuario" style={estilo.acesso} />
+        <TextInput secureTextEntry placeholder="Senha" style={estilo.acesso} />
 
-      <View style={estilo.logar}>
-        <Button title="" />
-        <Text style={estilo.txtlogar}>Login</Text>
-      </View>
-      <View style={estilo.cadastrar}>
-        <Button title="" />
-        <Text style={estilo.txtlogar}>Cadastrar</Text>
-      </View>
+        <View style={estilo.logar}>
+          <Button title="" />
+          <Text style={estilo.txtlogar} onPress={logar}>
+            Login
+          </Text>
+        </View>
+        <View style={estilo.cadastrar}>
+          <Button title="" />
+          <Text
+            style={estilo.txtlogar}
+            onPress={() => navigation.navigate("Cadastrar")}
+          >
+            Cadastrar{" "}
+          </Text>
+        </View>
+      </ImageBackground>
     </View>
   );
+
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Cadastrar" component={Cadastrar} />
+    </Stack.Navigator>
+  </NavigationContainer>;
 }
 
 const estilo = StyleSheet.create({
@@ -31,10 +58,11 @@ const estilo = StyleSheet.create({
     justifyContent: "center",
   },
   acesso: {
+    marginTop:20,
     backgroundColor: "white",
     color: "#f50057",
-    padding: 14,
-    width: "60%",
+    padding: 18,
+    width: "85%",
     margin: 5,
     marginLeft: "auto",
     marginRight: "auto",
@@ -44,11 +72,11 @@ const estilo = StyleSheet.create({
     borderBottomColor: "silver",
   },
   logar: {
-    borderRadius: 4,
+    borderRadius: 5,
     textAlign: "center",
-    marginTop: 50,
+    marginTop: 60,
     backgroundColor: "#f9a825",
-    width: 220,
+    width: "85%",
     marginLeft: "auto",
     marginRight: "auto",
   },
@@ -63,17 +91,42 @@ const estilo = StyleSheet.create({
   cadastrar: {
     borderRadius: 4,
     textAlign: "center",
-    marginTop: 60,
+    marginTop: 30,
     backgroundColor: "#f9a825",
-    width: 220,
+    width: "85%",
     marginLeft: "auto",
     marginRight: "auto",
   },
-  logo:{
-    width:130,
-    height:150,
-    marginLeft:"auto",
-    marginRight:"auto",
-    marginBottom:30,
-  }
+  logo: {
+    width: 130,
+    height: 150,
+    marginTop:20,
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: 30,
+  },
+  fundo:{
+    flex:1,
+    resizeMode:"center"
+  },
 });
+
+function logar() {
+  fetch("http://192.168.0.2:8080/projeto/service/usuario/login.php", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nomeusuario: "marlene.araujo",
+      senha: "123",
+    }),
+  })
+    .then((response) => response.json())
+    .then((resposta) => {
+      console.log(resposta);
+      Alert.alert("Olhe na tela de console");
+    })
+    .catch((error) => console.error(error));
+}

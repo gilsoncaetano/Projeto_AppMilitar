@@ -12,6 +12,8 @@ import Carrinho from "../screens/Carrinho";
 import PedidosRealizados from "../screens/PedidosRealizados";
 import Login from "../screens/Login";
 import Cadastrar from "../screens/Cadastrar";
+import Usuario from "../screens/Usuario";
+import Endereco from "../screens/Endereco";
 
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
@@ -83,6 +85,26 @@ export default function BottomTabNavigator() {
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-appstore" color={color} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Usuario"
+        component={UsuarioNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-american-football" color={color} />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name="Endereco"
+        component={EnderecoNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-american-football" color={color} />
           ),
         }}
       />
@@ -173,5 +195,30 @@ function CadastrarNavigator() {
         options={{ headerTitle: "Cadastrar" }}
       />
     </CadastrarStack.Navigator>
+  );
+}
+const UsuarioStack = createStackNavigator();
+function UsuarioNavigator() {
+  return (
+    <UsuarioStack.Navigator>
+      <UsuarioStack.Screen
+        name="Acesso"
+        component={Usuario}
+        options={{ headerTitle: "Acesso" }}
+      />
+    </UsuarioStack.Navigator>
+  );
+}
+
+const EnderecoStack = createStackNavigator();
+function EnderecoNavigator() {
+  return (
+    <EnderecoStack.Navigator>
+      <EnderecoStack.Screen
+        name="Endereço"
+        component={Endereco}
+        options={{ headerTitle: "Endereço" }}
+      />
+    </EnderecoStack.Navigator>
   );
 }
