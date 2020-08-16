@@ -14,19 +14,46 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
+let us = "";
+let sh = "";
 
 export default function Login({ navigation }) {
+  const [usuario, setUsuario] = React.useState("");
+  const [senha, setSenha] = React.useState("");
+
   return (
     <View style={estilo.area}>
-      <ImageBackground source={require("../img/camuflada.png")} style={estilo.fundo}>
+      <ImageBackground
+        source={require("../img/camuflada.png")}
+        style={estilo.fundo}
+      >
         <Image source={require("../img/saw-logo.png")} style={estilo.logo} />
 
-        <TextInput placeholder="Usuario" style={estilo.acesso} />
-        <TextInput secureTextEntry placeholder="Senha" style={estilo.acesso} />
+        <TextInput
+          placeholder="Usuario"
+          style={estilo.acesso}
+          onChangeText={(value) => setUsuario(value)}
+          value={usuario}
+        />
+
+        <TextInput
+          secureTextEntry
+          placeholder="Senha"
+          style={estilo.acesso}
+          onChangeText={(value) => setSenha(value)}
+          value={senha}
+        />
 
         <View style={estilo.logar}>
           <Button title="" />
-          <Text style={estilo.txtlogar} onPress={logar}>
+          <Text
+            style={estilo.txtlogar}
+            onPress={() => {
+              us = usuario;
+              sh = senha;
+              logar();
+            }}
+          >
             Login
           </Text>
         </View>
@@ -58,7 +85,7 @@ const estilo = StyleSheet.create({
     justifyContent: "center",
   },
   acesso: {
-    marginTop:20,
+    marginTop: 20,
     backgroundColor: "white",
     color: "#f50057",
     padding: 18,
@@ -100,14 +127,14 @@ const estilo = StyleSheet.create({
   logo: {
     width: 130,
     height: 150,
-    marginTop:20,
+    marginTop: 20,
     marginLeft: "auto",
     marginRight: "auto",
     marginBottom: 30,
   },
-  fundo:{
-    flex:1,
-    resizeMode:"center"
+  fundo: {
+    flex: 1,
+    resizeMode: "center",
   },
 });
 
@@ -119,8 +146,8 @@ function logar() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      nomeusuario: "marlene.araujo",
-      senha: "123",
+      nomeusuario: us,
+      senha: sh,
     }),
   })
     .then((response) => response.json())
