@@ -187,19 +187,19 @@ const estilo = StyleSheet.create({
   },
 });
 
-function efetuarCadastro() {
-  Alert.alert(
-    "Nome: " +
-      nomecl +
-      "\nCPF: " +
-      cpf +
-      "\nEmail: " +
-      email +
-      "\nTel: " +
-      tel +
-      "\nSexo: " +
-      sx
-  );
+// function efetuarCadastro() {
+//   Alert.alert(
+//     "Nome: " +
+//       nomecl +
+//       "\nCPF: " +
+//       cpf +
+//       "\nEmail: " +
+//       email +
+//       "\nTel: " +
+//       tel +
+//       "\nSexo: " +
+//       sx
+//   );
 
 function efetuarCadastro() {
   fetch("http://192.168.0.2:8080/projeto/service/cadastro/cadastro.php", {
