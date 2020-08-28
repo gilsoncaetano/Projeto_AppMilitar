@@ -11,12 +11,12 @@ import {
   unstable_enableLogBox,
   Alert,
 } from "react-native";
-import Usuario from "../screens/Usuario";
+import Login from "../screens/Login";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
-let nome = "";
+let nomecl = "";
 let cpf = "";
 let email = "";
 let tel = "";
@@ -24,6 +24,10 @@ let sx = "";
 let us = "";
 let sh = "";
 let ft = "";
+let fsh = "";
+
+
+
 
 export default function Cadastrar({ navigation }) {
   const [sexo, setSexo] = React.useState("");
@@ -31,6 +35,11 @@ export default function Cadastrar({ navigation }) {
   const [nomecli, setNomecli] = React.useState("");
   const [cpfcli, setCPFcli] = React.useState("");
   const [emailcli, setEmailcli] = React.useState("");
+  const [usuario, setUsuario] = React.useState("");
+  const [senha, setSenha] = React.useState("");
+  const [fsenha, setFsenha] = React.useState("");
+  const [foto, setFoto] = React.useState("");
+  const [usemail, setUsemail] = React.useState("");
   //const [foto, setFoto] = React.useState("");
 
   return (
@@ -81,14 +90,20 @@ export default function Cadastrar({ navigation }) {
           <Text
             style={estilo.txtlogar}
             onPress={() => {
-              nome = nomecli;
+              nomecl = nomecli;
               cpf = cpfcli;
               sx = sexo;
               email = emailcli;
               tel = telefone;
+              us = usuario;
+                sh = senha;
+                fsh = fsenha;
+                ft = foto;
+                email = usemail;
+
               efetuarCadastro();
             }}
-            //onPress={() => navigation.navigate("Usuario")}
+            //onPress={() => navigation.navigate("Login")}
           >
             Cadastrar{" "}
           </Text>
@@ -98,7 +113,7 @@ export default function Cadastrar({ navigation }) {
   );
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Usuario" component={Usuario} />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   </NavigationContainer>;
 }
@@ -175,7 +190,7 @@ const estilo = StyleSheet.create({
 function efetuarCadastro() {
   Alert.alert(
     "Nome: " +
-      nome +
+      nomecl +
       "\nCPF: " +
       cpf +
       "\nEmail: " +
@@ -186,23 +201,32 @@ function efetuarCadastro() {
       sx
   );
 
-  // function efetuarCadastro() {
-  //   fetch("http://192.168.0.2:8080/projeto/service/usuario/cadastro.php", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       nomeusuario: us,
-  //       senha: sh,
-  //       foto: ft,
-  //     }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((resposta) => {
-  //       console.log(resposta);
-  //       Alert.alert("Olhe na tela de console");
-  //     })
-  //     .catch((error) => console.error(error));
+function efetuarCadastro() {
+  fetch("http://192.168.0.2:8080/projeto/service/cadastro/cadastro.php", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      // nomeusuario: us,
+      // senha: sh,
+      // foto: ft,
+
+      nomecliente: nomecl,
+      cpf: cpf,
+      sexo: sx,
+      email: email,
+      telefone: tel,
+      nomeusuario: us,
+      senha: sh,
+      foto: ft,
+    }),
+  })
+    .then((response) => response.json())
+    .then((resposta) => {
+      console.log(resposta);
+      Alert.alert("Olhe na tela de console");
+    })
+    .catch((error) => console.error(error));
 }

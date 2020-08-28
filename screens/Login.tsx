@@ -9,7 +9,7 @@ import {
   unstable_enableLogBox,
   Alert,
 } from "react-native";
-import Cadastrar from "../screens/Cadastrar";
+import Usuario from "../screens/Usuario";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -61,7 +61,7 @@ export default function Login({ navigation }) {
           <Button title="" />
           <Text
             style={estilo.txtlogar}
-            onPress={() => navigation.navigate("Cadastrar")}
+            onPress={() => navigation.navigate("Usuario")}
           >
             Cadastrar{" "}
           </Text>
@@ -72,7 +72,7 @@ export default function Login({ navigation }) {
 
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Cadastrar" component={Cadastrar} />
+      <Stack.Screen name="Usuario" component={Usuario} />
     </Stack.Navigator>
   </NavigationContainer>;
 }

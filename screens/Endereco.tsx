@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, View } from "../components/Themed";
+import { Text, View} from "../components/Themed";
 import { TextInput, ScrollView } from "react-native-gesture-handler";
 import {
   Picker,
@@ -9,8 +9,9 @@ import {
   ImageBackground,
   unstable_enableLogBox,
   Alert,
+  
 } from "react-native";
-import Login from "../screens/Login";
+import Cadastrar from "../screens/Cadastrar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -93,7 +94,7 @@ export default function Endereco({ navigation }) {
               tip = tipoend;
               efetuarCadastro();
             }}
-            //onPress={() => navigation.navigate("Login")}
+            //onPress={() => navigation.navigate("Cadastrar")}
           >
             SALVAR{" "}
           </Text>
@@ -104,7 +105,7 @@ export default function Endereco({ navigation }) {
 
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Cadastrar" component={Cadastrar} />
     </Stack.Navigator>
   </NavigationContainer>;
 }
@@ -165,43 +166,43 @@ const estilo = StyleSheet.create({
   },
 });
 
-// function efetuarCadastro() {
-//   Alert.alert(
-//     "CEP: " +
-//       cp +
-//       "\nlograd: " +
-//       lograd +
-//       "\nNumero: " +
-//       numer +
-//       "\nCompl: " +
-//       compl +
-//       "\nBairro: " +
-//       bairr+
-//       "\nTipo:"+
-//       tip
-
-//   );
-
 function efetuarCadastro() {
-  fetch("http://192.168.0.2:8080/projeto/service/endereco/cadastro.php", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      tipo: tip,
-      logradouro: lograd,
-      numero: numer,
-      complemento: compl,
-      bairro: bair,
-      cep: cp,
-    }),
-  })
-    .then((response) => response.json())
-    .then((resposta) => {
-      console.log(resposta);
-      Alert.alert("Olhe na tela de console");
-    })
-    .catch((error) => console.error(error));
+  Alert.alert(
+    "CEP: " +
+      cp +
+      "\nlograd: " +
+      lograd +
+      "\nNumero: " +
+      numer +
+      "\nCompl: " +
+      compl +
+      "\nBairro: " +
+      bair+
+      "\nTipo:"+
+      tip
+
+  );
+
+// function efetuarCadastro() {
+//   fetch("http://192.168.0.2:8080/projeto/service/endereco/cadastro.php", {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       tipo: tip,
+//       logradouro: lograd,
+//       numero: numer,
+//       complemento: compl,
+//       bairro: bair,
+//       cep: cp,
+//     }),
+//   })
+//   .then((response) => response.json())
+//   .then((resposta) => {
+//     console.log(resposta);
+//     Alert.alert("Olhe na tela de console");
+//   })
+//     .catch((error) => console.error(error));
 }

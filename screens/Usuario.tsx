@@ -18,7 +18,7 @@ let us = "";
 let fsh = "";
 let sh = "";
 let ft = "";
-let email = ";";
+let email = "";
 
 export default function Usuario({ navigation }) {
   const [usuario, setUsuario] = React.useState("");
@@ -29,67 +29,65 @@ export default function Usuario({ navigation }) {
 
   return (
     <View style={estilo.area}>
-      
       <ImageBackground
         source={require("../img/camuflada.png")}
         style={estilo.fundo}
       >
         <ScrollView>
-        <TextInput
-          placeholder="Foto"
-          style={estilo.logo}
-          onChangeText={(value) => setFoto(value)}
-          value={foto}
-        />
-        <TextInput
-          placeholder="Usuário"
-          style={estilo.acessousu}
-          onChangeText={(value) => setUsuario(value)}
-          value={usuario}
-        />
-        <TextInput
-          secureTextEntry
-          placeholder="Senha"
-          style={estilo.acessousu}
-          onChangeText={(value) => setSenha(value)}
-          value={senha}
-        />
-        <TextInput
-          secureTextEntry
-          placeholder="Confirme"
-          style={estilo.acessousu}
-          onChangeText={(value) => setFsenha(value)}
-          value={fsenha}
-        />
-        <TextInput
-          placeholder="E-Mail"
-          keyboardType="email-address"
-          style={estilo.acessousu}
-          onChangeText={(value) => setUsemail(value)}
-          value={usemail}
-        />
+          <TextInput
+            placeholder="Foto"
+            style={estilo.logo}
+            onChangeText={(value) => setFoto(value)}
+            value={foto}
+          />
+          <TextInput
+            placeholder="Usuário"
+            style={estilo.acessousu}
+            onChangeText={(value) => setUsuario(value)}
+            value={usuario}
+          />
+          <TextInput
+            secureTextEntry
+            placeholder="Senha"
+            style={estilo.acessousu}
+            onChangeText={(value) => setSenha(value)}
+            value={senha}
+          />
+          <TextInput
+            secureTextEntry
+            placeholder="Confirme"
+            style={estilo.acessousu}
+            onChangeText={(value) => setFsenha(value)}
+            value={fsenha}
+          />
+          <TextInput
+            placeholder="E-Mail"
+            keyboardType="email-address"
+            style={estilo.acessousu}
+            onChangeText={(value) => setUsemail(value)}
+            value={usemail}
+          />
 
-        <View style={estilo.botao}>
-          <Button title="" />
-          <Text
-            style={estilo.txtlogar}
-            onPress={() => {
-              us = usuario;
-              sh = senha;
-              fsh = fsenha;
-              ft = foto;
-              email = usemail;
+          <View style={estilo.botao}>
+            <Button title="" />
+            <Text
+              style={estilo.txtlogar}
+              onPress={() => {
+                us = usuario;
+                sh = senha;
+                fsh = fsenha;
+                ft = foto;
+                email = usemail;
 
-              efetuarCadastro();
-            }}
-            //onPress={() => navigation.navigate("Endereco")}
-          >
-            Cadastrar{" "}
-          </Text>
-        </View>
+                efetuarCadastro();
+              }}
+              //onPress={() => navigation.navigate("Endereco")}
+            >
+              Cadastrar{" "}
+            </Text>
+          </View>
         </ScrollView>
       </ImageBackground>
-      
     </View>
   );
 
@@ -117,21 +115,18 @@ const estilo = StyleSheet.create({
     marginBottom: 30,
   },
   area: {
-    
     backgroundColor: "white",
     flex: 1,
     alignContent: "center",
     justifyContent: "center",
   },
   areausu: {
-   
     fontSize: 18,
     padding: 14,
     marginLeft: "auto",
     marginRight: "auto",
   },
   acessousu: {
-    
     backgroundColor: "white",
     color: "#f50057",
     padding: 18,
